@@ -1,0 +1,45 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id             String    @id @default(uuid()) // Changed to String to match the use case
+  email          String    @unique
+  password_hash  String    // Store hashed password
+  name           String?
+  apiKeys        ApiKey[]  // Relation to API keys
+  contexts       Context[] // Relation to contexts
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model ApiKey {
+  id             Int       @id @default(autoincrement())
+  key            String    @unique // API key must be unique
+  user           User      @relation(fields: [userId], references: [id])
+  userId         String    // Changed to String for consistency
+  isActive       Boolean   @default(true) // Whether the API key is active
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  contexts       Context[] // Relationship to contexts
+}
+
+model Context {
+  id             Int       @id @default(autoincrement())
+  name           String    // Name for the context
+  description    String    // Added description for context
+  content        String    // Content for the context (e.g., chatbot context)
+  user           User      @relation(fields: [userId], references: [id])
+  userId         String    // Foreign key to User (Changed to String)
+  apiKey         ApiKey    @relation(fields: [apiKeyId], references: [id])
+  apiKeyId       Int       // Foreign key for the ApiKey
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
