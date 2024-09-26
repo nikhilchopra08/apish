@@ -13,7 +13,6 @@ const Auth = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [variant, setVariant] = useState("login");
 
   const toggleVariant = useCallback(() => {
@@ -21,19 +20,6 @@ const Auth = () => {
       currentVariant === "login" ? "register" : "login"
     );
   }, []);
-
-  const register = useCallback(async () => {
-    try {
-      await axios.post("/api/register", {
-        email,
-        name,
-        password,
-      });
-      login();
-    } catch (e) {
-      console.log(e);
-    }
-  }, [email, name, password]);
 
   const login = useCallback(async () => {
     try {
@@ -49,6 +35,19 @@ const Auth = () => {
       console.log(e);
     }
   }, [email, password, router]);
+
+  const register = useCallback(async () => {
+    try {
+      await axios.post("/api/register", {
+        email,
+        name,
+        password,
+      });
+      await login(); // Await here to ensure login is completed
+    } catch (e) {
+      console.log(e);
+    }
+  }, [email, name, password, login]); // Include 'login' here
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -113,13 +112,13 @@ const Auth = () => {
         </form>
 
         <button
-  className="text-neutral-500 flex justify-center items-center w-full"
-  onClick={toggleVariant}
->
-  {variant === "login"
-    ? "New user? Sign up here."
-    : "Already have an account? Login here."}
-</button>
+          className="text-neutral-500 flex justify-center items-center w-full"
+          onClick={toggleVariant}
+        >
+          {variant === "login"
+            ? "New user? Sign up here."
+            : "Already have an account? Login here."}
+        </button>
 
       </div>
     </div>
