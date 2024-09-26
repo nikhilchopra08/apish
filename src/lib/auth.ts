@@ -1,5 +1,4 @@
 import { compare } from "bcrypt";
-// @ts-expect-error kdfnsgkjf
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prismadb from "@/lib/prismadb"
@@ -13,7 +12,7 @@ export const AuthOptions : NextAuthOptions = {
                 email : {label : "Email" , type:"text"},
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials){
+            async authorize(credentials , req){
                 if(!credentials?.email || !credentials.password){
                     throw new Error("Email and Password are Required");
                 }
