@@ -7,14 +7,14 @@ import Chatbot from '@/Components/Chatbot';
 
 const HomePage = () => {
   const [apiKey, setApiKey] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
 
   // Use an effect to read the API key from environment variables (optional)
   useEffect(() => {
     const key = process.env.NEXT_PUBLIC_API_KEY; // Use your environment variable
     if (key) {
       setApiKey(key);
-      setSubmitted(true); // Automatically submit if the key is available
+      // setSubmitted(true); // Automatically submit if the key is available
     }
   }, []);
 
