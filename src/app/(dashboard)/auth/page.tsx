@@ -44,7 +44,7 @@ const Auth = () => {
         callbackUrl: "",
       });
 
-      router.push("/generate-api-key");
+      router.push("/apikey");
     } catch (e) {
       console.log(e);
     }

@@ -48,7 +48,7 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-slate-800 to-zinc-700 flex flex-col items-center justify-center p-8">
+    <div className="min-h-screen bg-gray-800 flex flex-col items-center justify-center p-8">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden max-w-2xl w-full">
         <div className="flex px-6 py-4">
           <h1 className="text-2xl font-bold text-gray-800">Question Answering Chatbot</h1>

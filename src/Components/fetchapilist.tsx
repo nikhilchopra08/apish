@@ -44,14 +44,16 @@ const ApiKeyList = () => {
     navigator.clipboard.writeText(key);
     toast.success('API Key copied to the clipboard.');
   };
-
-  if (loading) return <p className="text-gray-600">Loading...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
       <ToastContainer />
       <h2 className='text-xl font-semibold text-gray-800 mb-4'>Your API Keys</h2>
+      {loading ? <p className="text-gray-600">Loading...</p>
+      : apiKeys.length === 0 ? (
+        <p className="text-gray-600">No API Keys Found</p>
+      ) : 
       <ul className="list-disc pl-5 space-y-4">
         {apiKeys.map((apiKey) => (
           <li key={apiKey.key} className="p-4 border border-gray-200 rounded-md shadow-sm bg-gray-50">
@@ -75,6 +77,7 @@ const ApiKeyList = () => {
           </li>
         ))}
       </ul>
+}
     </div>
   );
 };

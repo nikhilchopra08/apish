@@ -15,7 +15,6 @@ const Navbar = () => {
     { href: '/apikey', label: 'About' },
     { href: '/Chatbot', label: 'Contact' },
     { href: '/chat', label: 'Services' },
-    { href: '/testing', label: 'code testing' },
   ];
 
   return (

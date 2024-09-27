@@ -36,7 +36,7 @@ const CreateApiKey = () => {
   };
 
   return (
-    <div className="w-full md:w-4/5 lg:w-1/2 mx-auto p-8 border rounded-lg shadow-md bg-gradient-to-b from-indigo-500 to-purple-700">
+    <div className="w-full mx-auto p-8 border rounded-lg shadow-md bg-gray-900">
       <h2 className="text-3xl font-bold text-white text-center mb-8 animate__animated animate__fadeInDown">Create API Key</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-6">
