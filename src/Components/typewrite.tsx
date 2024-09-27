@@ -16,7 +16,9 @@ export default function TypewriterEffectDemo() {
     },
   ];
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl bg-neutral-900 h-[18rem] w-[40rem]">
+    <div className="align-middle flex flex-col justify-center rounded-2xl bg-neutral-900 h-[18rem] w-[22rem] md:w-[30rem]">
+     <div className="flex flex-col items-center justify-center">
+
      
       <TypewriterEffect words={words} />
       <h1 className="pt-5 text-2xl text-white">An API Key Platform</h1>
@@ -27,6 +29,7 @@ export default function TypewriterEffectDemo() {
             </button>
         </Link>
       </div>
+    </div>
     </div>
   );
 }
