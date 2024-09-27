@@ -1,4 +1,4 @@
-"use client";
+// components/Chatbot.tsx
 
 import { useEffect, useState } from 'react';
 
@@ -11,6 +11,7 @@ interface CurrentUser {
 
 interface ChatbotProps {
   apiKey: string;
+  className?: string;
 }
 
 const Chatbot: React.FC<ChatbotProps> = ({ apiKey }) => {
@@ -76,17 +77,18 @@ const Chatbot: React.FC<ChatbotProps> = ({ apiKey }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 border rounded shadow-md">
-      <h1 className="text-2xl font-bold mb-4">Chatbot</h1>
+    <div className="flex flex-col max-w-md mx-auto p-8 bg-white rounded shadow-md">
 
       {/* Display the current user */}
       {currentUser ? (
-        <div className="mb-4 p-2 bg-gray-100 border border-gray-300 rounded">
-          Logged in as: <strong>{currentUser.email}</strong>
-        </div>
+        // <div className="flex items-center mb-4 p-4 bg-gray-100 rounded border border-gray-300">
+        //   <span className="text-sm font-medium text-gray-700 mr-2">Logged in as:</span>
+        //   <strong>{currentUser.email}</strong>
+        // </div>
+        <div></div>
       ) : (
-        <div className="mb-4 p-2 bg-yellow-100 border border-yellow-300 rounded">
-          Fetching current user...
+        <div className="flex items-center mb-4 p-4 bg-yellow-100 rounded border border-yellow-300">
+          <span className="text-sm font-medium text-yellow-700 mr-2">Fetching current user...</span>
         </div>
       )}
 
@@ -95,23 +97,28 @@ const Chatbot: React.FC<ChatbotProps> = ({ apiKey }) => {
           <label htmlFor="question" className="block text-sm font-medium text-gray-700">
             Ask a question:
           </label>
-          <input
-            type="text"
+          <textarea
             id="question"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            className="mt-1 p-2 w-full border rounded shadow-sm"
+            className="mt-1 p-2 text-gray-700 w-full border rounded shadow-sm"
             placeholder="Type your question here"
             required
           />
         </div>
-        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+        <button type="submit" className="w-full py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
           Submit
         </button>
       </form>
 
-      {response && <div className="mt-4 p-2 bg-green-100 border border-green-300 rounded">{response}</div>}
-      {error && <div className="mt-4 p-2 bg-red-100 border border-red-300 rounded">{error}</div>}
+      {response && <div className="mt-4 p-4 bg-green-100 rounded shadow-md">
+          <h3 className="text-lg font-bold text-green-800">Answer:</h3>
+          <p className="text-green-600">{response}</p>
+        </div>}
+      {error && <div className="mt-4 p-4 bg-red-100 rounded shadow-md">
+          <h3 className="text-lg font-bold text-red-800">Error:</h3>
+          <p className="text-red-600">{error}</p>
+        </div>}
     </div>
   );
 };
