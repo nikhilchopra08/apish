@@ -19,9 +19,9 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
-    -name: migrate
-      run: npx prisma migrate dev 
-      
+    - name: migrate
+      run: npx prisma migrate dev
+
     - name: gnerate
       run : npx prisma generate
 
