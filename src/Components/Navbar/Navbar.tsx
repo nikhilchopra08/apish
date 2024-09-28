@@ -1,75 +1,91 @@
-"use client"
-import Link from 'next/link'
-import React, { useState } from 'react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
-import MenuOverlay from './MenuOverlay';
-import NavLinks from './NavLinks';
-import { signIn, signOut, useSession } from 'next-auth/react';
+"use client";
+import Link from "next/link";
+import React, { useState } from "react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const navLinks = [
-    {
-        title: "Home",
-        path: "/",
-    },
-    {
-        title: "Generate Key",
-        path: "/apikey",
-    },    {
-      title: "Chatbot",
-      path: "/Chatbot",
-  },    {
-    title: "Test context",
+  {
+    title: "Home",
+    path: "/",
+  },
+  {
+    title: "Generate Key",
+    path: "/apikey",
+  },
+  {
+    title: "Chatbot",
+    path: "/Chatbot",
+  },
+  {
+    title: "Test Context",
     path: "/chat",
-},
-]
+  },
+];
 
 const NavBar = () => {
-    const [navbarOpen, setNavbarOpen] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
-    const { data: session } = useSession(); 
+  return (
+    <nav className="bg-gray-800 top-0 left-0 right-0 z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="text-white text-2xl font-bold">
+              MyApp
+            </Link>
+          </div>
 
-
-    return (
-        <nav className='z-10 bg-gray-900 bg-opacity-100'>
-            <div className='flex flex-wrap items-center justify-between mx-auto px-4 py-2'>
-                <Link href="/" className='text-2xl md:text-5xl text-white font-semiBold'>Nikhil</Link>
-                <div className='mobile-menu block md:hidden'>
-                    {!navbarOpen ? (
-                        <button
-                            onClick={() => setNavbarOpen(true)}
-                            className='flex item-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white'>
-                            <Bars3Icon className='h-5 w-5' />
-                        </button>
-                    ) : (
-                        <button
-                            onClick={() => setNavbarOpen(false)}
-                            className='flex item-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white'>
-                            <XMarkIcon className='h-5 w-5' />
-                        </button>
-                    )}
-                </div>
-                <div className='menu hidden md:block md:w-auto' id='navBar'>
-                    <ul className='flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0'>
-                        {navLinks.map((link, index) => (
-                            <li key={index}>
-                                <NavLinks href={link.path} title={link.title} />
-                            </li>
-                        ))}
-                        {session ? (
-            <button onClick={() => signOut()} className="block text-white hover:text-blue-600 transition p-2">
-              Logout
+          {/* Mobile menu button */}
+          <div className="block md:hidden">
+            <button
+              onClick={() => setNavbarOpen(!navbarOpen)}
+              className="text-gray-300 hover:text-white focus:outline-none"
+            >
+              {!navbarOpen ? (
+                <Bars3Icon className="h-6 w-6" />
+              ) : (
+                <XMarkIcon className="h-6 w-6" />
+              )}
             </button>
-          ) : (
-            <button onClick={() => signIn()} className="block text-white hover:text-blue-600 transition p-2">
-              Login
-            </button>
-          )}
-                    </ul>
-                </div>
+          </div>
+
+          {/* Desktop menu */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              {navLinks.map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.path}
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  {link.title}
+                </Link>
+              ))}
             </div>
-            {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
-        </nav>
-    );
-}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {navbarOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navLinks.map((link, index) => (
+              <Link
+                key={index}
+                href={link.path}
+                className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setNavbarOpen(false)} // Close menu on link click
+              >
+                {link.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
 
 export default NavBar;
