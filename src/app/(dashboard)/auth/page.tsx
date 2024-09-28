@@ -62,7 +62,7 @@ const Auth = () => {
   return (
     <div className="flex flex-col justify-center h-screen items-end pr-8 md:pr-0 md:items-center w-full bg-custom-radial">
       <div className="h-fit w-[20rem] md:w-[30rem] rounded-sm md:rounded-2xl px-4 md:p-8 shadow-input dark:bg-white bg-black">
-        <h1 className="font-bold text-3xl dark:text-neutral-800 text-neutral-200">
+        <h1 className="font-bold text-3xl dark:text-neutral-800 text-black">
           {variant === "login" ? "Login" : "Signup"}
         </h1>
         <form className="my-4 md:my-8" onSubmit={handleSubmit}>
