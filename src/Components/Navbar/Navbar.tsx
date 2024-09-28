@@ -27,17 +27,12 @@ const NavBar = () => {
 
   return (
     <nav className="bg-gray-800 top-0 left-0 right-0 z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="text-white text-2xl font-bold">
-              MyApp
-            </Link>
-          </div>
 
           {/* Mobile menu button */}
-          <div className="block md:hidden">
+          <div className="grid place-content-center md:hidden">
             <button
               onClick={() => setNavbarOpen(!navbarOpen)}
               className="text-gray-300 hover:text-white focus:outline-none"
@@ -51,8 +46,8 @@ const NavBar = () => {
           </div>
 
           {/* Desktop menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden md:grid md:place-content-center">
+            <div className="flex space-x-4">
               {navLinks.map((link, index) => (
                 <Link
                   key={index}
