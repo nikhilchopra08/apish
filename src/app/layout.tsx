@@ -28,16 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-              <Providers>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-
-        {/* <SidebarMenu  /> */}
-
-        <Navbar/>
-        {children}
-      </body>
+      <Providers>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <Navbar />
+          {children}
+        </body>
       </Providers>
     </html>
   );
