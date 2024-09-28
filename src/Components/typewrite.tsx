@@ -2,8 +2,11 @@
 import { TypewriterEffect } from "./ui/typewriter-effect";
 import React from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function TypewriterEffectDemo() {
+
+  const { data: session } = useSession();
   const words = [
     {
       text: "Welcome",
@@ -23,11 +26,17 @@ export default function TypewriterEffectDemo() {
       <TypewriterEffect words={words} />
       <h1 className="pt-5 text-2xl text-white">An API Key Platform</h1>
       <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-10">
+        {!session ?
         <Link href={"/auth"}>
             <button className="w-full bg-blue-600 text-white px-5 py-3 rounded-md hover:bg-blue-700">
             Get Started &rarr;
             </button>
         </Link>
+        :         <Link href={"/apikey"}>
+        <button className="w-full bg-blue-600 text-white px-5 py-3 rounded-md hover:bg-blue-700">
+        Generate Api Key &rarr;
+        </button>
+    </Link>}
       </div>
     </div>
     </div>

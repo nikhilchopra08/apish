@@ -2,8 +2,10 @@
 
 // components/Chatbot.tsx
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
 interface ChatEntry {
   question: string;
@@ -17,6 +19,14 @@ const Chatbot = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [history, setHistory] = useState<ChatEntry[]>([]);
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (!session) {
+      redirect("/auth");
+    }
+  }, [session]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
