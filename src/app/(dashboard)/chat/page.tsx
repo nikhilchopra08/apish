@@ -50,8 +50,8 @@ const Chatbot = () => {
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-8">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden max-w-2xl w-full">
-        <div className="flex px-6 py-4">
-          <h1 className="text-2xl font-bold text-gray-800">Question Answering Chatbot</h1>
+        <div className="flex px-6 py-4 justify-center items-center">
+          <h1 className="text-2xl font-bold text-gray-800">Test Context for your Bot</h1>
         </div>
         <form onSubmit={handleSubmit} className="px-6 py-4 space-y-4">
           <div className="flex flex-col space-y-2">

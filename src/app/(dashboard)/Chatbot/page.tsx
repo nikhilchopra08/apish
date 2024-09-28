@@ -53,7 +53,7 @@ const HomePage = () => {
               onSubmit={handleSubmit}
               className="space-y-6 bg-white p-6 rounded-lg shadow-lg w-full"
             >
-              <h2 className="text-2xl font-bold text-gray-800">
+              <h2 className="text-2xl text-center font-bold text-gray-800">
                 Enter Your API Key
               </h2>
               <input

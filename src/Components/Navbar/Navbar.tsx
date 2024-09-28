@@ -9,7 +9,7 @@ const navLinks = [
     path: "/",
   },
   {
-    title: "Generate Key",
+    title: "Generate",
     path: "/apikey",
   },
   {
@@ -17,7 +17,7 @@ const navLinks = [
     path: "/Chatbot",
   },
   {
-    title: "Test Context",
+    title: "Test",
     path: "/chat",
   },
 ];
@@ -31,28 +31,14 @@ const NavBar = () => {
         <div className="flex items-center justify-center h-16">
           {/* Logo */}
 
-          {/* Mobile menu button */}
-          <div className="grid place-content-center md:hidden">
-            <button
-              onClick={() => setNavbarOpen(!navbarOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none"
-            >
-              {!navbarOpen ? (
-                <Bars3Icon className="h-6 w-6" />
-              ) : (
-                <XMarkIcon className="h-6 w-6" />
-              )}
-            </button>
-          </div>
-
           {/* Desktop menu */}
-          <div className="hidden md:grid md:place-content-center">
+          <div className="grid md:place-content-center">
             <div className="flex space-x-4">
               {navLinks.map((link, index) => (
                 <Link
                   key={index}
                   href={link.path}
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md md:text-lg font-medium"
                 >
                   {link.title}
                 </Link>
@@ -63,22 +49,6 @@ const NavBar = () => {
       </div>
 
       {/* Mobile menu */}
-      {navbarOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map((link, index) => (
-              <Link
-                key={index}
-                href={link.path}
-                className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setNavbarOpen(false)} // Close menu on link click
-              >
-                {link.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
     </nav>
   );
 };

@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from "react";
 import axios from "axios";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Label } from "@/Components/ui/label";
@@ -49,6 +49,11 @@ const Auth = () => {
       console.log(e);
     }
   }, [email, password, router]);
+
+  const { data: session } = useSession();
+    if (session) {
+      router.push("/");
+    }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
