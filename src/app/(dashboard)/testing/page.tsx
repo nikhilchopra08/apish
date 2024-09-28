@@ -19,7 +19,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-800 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center">
       <div className="max-w-md p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Chatbot</h2>
         <Chatbot apiKey={apiKey} />

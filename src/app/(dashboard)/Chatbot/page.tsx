@@ -38,12 +38,12 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-900 flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0 items-center justify-center p-4">
       <ToastContainer />
       {/* Chatbot Section */}
-      {submitted && (
+      {/* {submitted && (
         <Chatbot
           apiKey={apiKey}
           className="w-full md:w-1/2 flex flex-col items-center justify-center p-8 space-y-6 bg-white rounded-lg shadow-lg"
         />
-      )}
+      )} */}
 
       <div className="w-full md:w-1/2 min-w-fit flex flex-col md:flex-row items-center justify-center p-4 space-y-6 md:space-y-0 md:space-x-6">
         {/* Right Side - Form to Enter API Key */}
@@ -73,18 +73,13 @@ const HomePage = () => {
             </form>
           ) : (
             <>
-              <div className="bg-white p-6 rounded-lg shadow-lg w-full">
-                <p className="text-xl font-semibold text-gray-800">
-                  API Key submitted successfully!
-                </p>
-              </div>
               {/* Chatbot Section - conditionally rendered again for mobile */}
-              <div className="bg-white p-6 rounded-lg shadow-lg w-full mt-6 md:hidden">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              {/* <div className="bg-white p-6 rounded-lg shadow-lg w-full mt-6 md:hidden"> */}
+                <h2 className="text-2xl font-bold text-gray-200 mb-4">
                   Chatbot
                 </h2>
                 <Chatbot apiKey={apiKey} />
-              </div>
+              {/* </div> */}
             </>
           )}
         </div>
