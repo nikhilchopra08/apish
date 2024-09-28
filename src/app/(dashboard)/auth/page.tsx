@@ -73,31 +73,33 @@ const Auth = () => {
         <form className="my-4 md:my-8" onSubmit={handleSubmit}>
           {variant === "register" && (
             <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-              <LabelInputContainer>
-                <Label htmlFor="name">Name</Label>
+              <LabelInputContainer className="text-black">
+                <Label htmlFor="name" className="text-black">Name</Label>
                 <Input
                   id="name"
                   placeholder="Tyler Durden"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  className="text-black"
                 />
               </LabelInputContainer>
             </div>
           )}
 
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="email" className="text-white">Email Address</Label>
+          <LabelInputContainer className="mb-4 text-black">
+            <Label htmlFor="email" className="text-black">Email Address</Label>
             <Input
               id="email"
               placeholder="projectmayhem@fc.com"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="text-black"
             />
           </LabelInputContainer>
 
-          <LabelInputContainer className="mb-4">
+          <LabelInputContainer className="mb-4 text-black">
             <Label htmlFor="password" className="text-black">Password</Label>
             <Input
               id="password"
