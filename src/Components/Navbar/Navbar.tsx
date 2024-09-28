@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const navLinks = [
   {
@@ -23,7 +22,6 @@ const navLinks = [
 ];
 
 const NavBar = () => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
     <nav className="bg-gray-800 top-0 left-0 right-0 z-10">
