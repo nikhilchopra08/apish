@@ -87,7 +87,7 @@ const Auth = () => {
           )}
 
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">Email Address</Label>
+            <Label htmlFor="email" className="text-white">Email Address</Label>
             <Input
               id="email"
               placeholder="projectmayhem@fc.com"
@@ -98,13 +98,14 @@ const Auth = () => {
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className="text-black">Password</Label>
             <Input
               id="password"
               placeholder="••••••••"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="text-black"
             />
           </LabelInputContainer>
 

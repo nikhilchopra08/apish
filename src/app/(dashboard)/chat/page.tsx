@@ -60,7 +60,7 @@ const Chatbot = () => {
               type="text"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              className="appearance-none rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="appearance-none rounded-md border text-black border-gray-300 px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Ask a question..."
               required
             />
@@ -70,7 +70,7 @@ const Chatbot = () => {
             <textarea
               value={context}
               onChange={(e) => setContext(e.target.value)}
-              className="appearance-none rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="appearance-none rounded-md border border-gray-300 text-black px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Provide context for the question..."
               required
             />
