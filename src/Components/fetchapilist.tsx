@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { IconLoader } from '@tabler/icons-react';
 
 // Define interfaces for API Key and Context
 interface Context {
@@ -50,7 +51,7 @@ const ApiKeyList = () => {
     <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
       <ToastContainer />
       <h2 className='text-xl font-semibold text-gray-800 mb-4'>Your API Keys</h2>
-      {loading ? <p className="text-gray-600">Loading...</p>
+      {loading ? <IconLoader className=' text-center mx-auto size-4 animate-spin bg-black'/>
       : apiKeys.length === 0 ? (
         <p className="text-gray-600">No API Keys Found</p>
       ) : 

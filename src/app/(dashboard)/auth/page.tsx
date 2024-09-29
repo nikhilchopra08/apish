@@ -52,9 +52,7 @@ const Auth = () => {
         setLoading(false); // Stop loading
       } else {
         toast.success("Login successful!"); // Show success toast
-        setTimeout(() => {
-          router.push("/apikey");
-        }, 10000);
+        router.push("/apikey");
       }
     } catch (e) {
       console.log(e);
@@ -65,7 +63,7 @@ const Auth = () => {
 
   const { data: session } = useSession();
   if (session) {
-    router.push("/");
+    router.push("/apikey");
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

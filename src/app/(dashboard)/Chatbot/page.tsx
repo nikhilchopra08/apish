@@ -10,12 +10,23 @@ import "react-toastify/dist/ReactToastify.css";
 const HomePage = () => {
   const [apiKey, setApiKey] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false); // Loading state
   const preRef = useRef<HTMLPreElement>(null); // Ref to the <pre> element
   const envRef = useRef<HTMLPreElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true); // Set loading to true on submit
+    try {
+      // Simulate an API call or processing time
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Adjust as needed
+      setSubmitted(true);
+      toast.success("API Key submitted successfully!");
+    } catch (error) {
+      toast.error("An error occurred while submitting the API Key.");
+    } finally {
+      setLoading(false); // Set loading to false after processing
+    }
   };
 
   const onCopy = () => {
@@ -37,14 +48,6 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0 items-center justify-center p-4">
       <ToastContainer />
-      {/* Chatbot Section */}
-      {/* {submitted && (
-        <Chatbot
-          apiKey={apiKey}
-          className="w-full md:w-1/2 flex flex-col items-center justify-center p-8 space-y-6 bg-white rounded-lg shadow-lg"
-        />
-      )} */}
-
       <div className="w-full md:w-1/2 min-w-fit flex flex-col md:flex-row items-center justify-center p-4 space-y-6 md:space-y-0 md:space-x-6">
         {/* Right Side - Form to Enter API Key */}
         <div className="md:w-1/2 flex flex-col items-center justify-center">
@@ -66,20 +69,18 @@ const HomePage = () => {
               />
               <button
                 type="submit"
-                className="w-full bg-indigo-600 text-white font-bold py-3 rounded-md hover:bg-indigo-700 transition-colors"
+                className={`w-full bg-indigo-600 text-white font-bold py-3 rounded-md hover:bg-indigo-700 transition-colors ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+                disabled={loading} // Disable button when loading
               >
-                Submit API Key
+                {loading ? "Submitting..." : "Submit API Key"}
               </button>
             </form>
           ) : (
             <>
-              {/* Chatbot Section - conditionally rendered again for mobile */}
-              {/* <div className="bg-white p-6 rounded-lg shadow-lg w-full mt-6 md:hidden"> */}
-                <h2 className="text-2xl font-bold text-gray-200 mb-4">
-                  Chatbot
-                </h2>
-                <Chatbot apiKey={apiKey} />
-              {/* </div> */}
+              <h2 className="text-2xl font-bold text-gray-200 mb-4">
+                Chatbot
+              </h2>
+              <Chatbot apiKey={apiKey} />
             </>
           )}
         </div>
@@ -91,7 +92,7 @@ const HomePage = () => {
           </h2>
           <div className="flex flex-col md:flex-row items-start justify-start space-y-4 md:space-y-0 md:space-x-4">
             <pre
-              ref={preRef} // Ref added to <pre> element
+              ref={preRef}
               className="bg-slate-700 text-white text-sm p-4 rounded-lg shadow-lg max-h-96 max-w-full whitespace-pre-wrap overflow-x-auto"
             >
               {`"use client"
@@ -105,18 +106,16 @@ const HomePage = () => {
   const [apiKey, setApiKey] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  // Use an effect to read the API key from environment variables
   useEffect(() => {
-    const key = process.env.NEXT_PUBLIC_API_KEY; // Use your environment variable
+    const key = process.env.NEXT_PUBLIC_API_KEY; 
     if (key) {
       setApiKey(key);
-      setSubmitted(true); // Automatically submit if the key is available
+      setSubmitted(true);
     }
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you can also save the apiKey to your app state or local storage if needed
     setSubmitted(true);
   };
 
@@ -150,26 +149,25 @@ export default HomePage;
 `}
             </pre>
             <button
-              onClick={onCopy} // Calls the onCopy function to copy <pre> content
+              onClick={onCopy}
               className="bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors"
             >
               Copy Code
             </button>
           </div>
 
-          {/* Instruction for setting the environment variable in a separate <pre> tag */}
           <h3 className="text-lg font-semibold text-gray-100 mt-4">
             Add this line to your .env.local file:
           </h3>
           <div className="flex flex-col md:flex-row items-start justify-start space-y-4 md:space-y-0 md:space-x-4">
             <pre
-              ref={envRef} // Ref for the env <pre> element
-              className="bg-slate-700 text-white text-sm p-4 rounded-lg shadow-lg  max-w-[80vw] md:max-w-full w-full whitespace-pre-wrap overflow-x-auto"
+              ref={envRef}
+              className="bg-slate-700 text-white text-sm p-4 rounded-lg shadow-lg max-w-[80vw] md:max-w-full w-full whitespace-pre-wrap overflow-x-auto"
             >
               {`NEXT_PUBLIC_API_KEY=your_api_key_here`}
             </pre>
             <button
-              onClick={onCopy1} // Calls the onCopy function to copy env <pre> content
+              onClick={onCopy1}
               className="bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors"
             >
               Copy Instruction
