@@ -1,12 +1,12 @@
 import React from 'react';
 import TypewriterEffectDemo from '../Components/typewrite';
-import AboutUs from '@/Components/AboutUs';
-import StepsToIntegrateAPI from '@/Components/StepsToIntegrateAPI';
-import Features from '@/Components/homepage/Features';
-import UseCases from '@/Components/homepage/usecase';
-import Contact from '@/Components/homepage/contact';
-import Pricing from '@/Components/homepage/pricing';
-import Footer from '@/Components/homepage/footer';
+// import AboutUs from '@/Components/AboutUs';
+// import StepsToIntegrateAPI from '@/Components/StepsToIntegrateAPI';
+// import Features from '@/Components/homepage/Features';
+// import UseCases from '@/Components/homepage/usecase';
+// import Contact from '@/Components/homepage/contact';
+// import Pricing from '@/Components/homepage/pricing';
+// import Footer from '@/Components/homepage/footer';
 
 const Home: React.FC = () => {
   return (
@@ -22,30 +22,30 @@ const Home: React.FC = () => {
       {/* Main Content Sections */}
       <div className=" w-full mx-auto px-4">
         {/* About Us Section */}
-        <AboutUs />
+        {/* <AboutUs /> */}
 
         {/* Features Section */}
-        <Features />
+        {/* <Features /> */}
 
         {/* Use Cases Section */}
-        <UseCases />
+        {/* <UseCases /> */}
 
         {/* Steps to Integrate API Section */}
-        <StepsToIntegrateAPI />
+        {/* <StepsToIntegrateAPI /> */}
 
         {/* Pricing Section */}
-        <Pricing />
+        {/* <Pricing /> */}
 
         {/* Contact Section */}
-        <Contact />
+        {/* <Contact /> */}
       </div>
 
       {/* Footer */}
-      <div
+      {/* <div
         className=" w-full"
       >
         <Footer />
-      </div>
+      </div> */}
 
     </div>
   );
