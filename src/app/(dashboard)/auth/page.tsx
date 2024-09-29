@@ -7,14 +7,16 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Label } from "@/Components/ui/label";
 import { Input } from "@/Components/ui/input";
+import { toast, ToastContainer } from "react-toastify"; // Import toast
+import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
 const Auth = () => {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [variant, setVariant] = useState("login");
+  const [loading, setLoading] = useState(false); // Loader state
 
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) =>
@@ -32,28 +34,39 @@ const Auth = () => {
       login();
     } catch (e) {
       console.log(e);
+      toast.error("Registration failed."); // Toast on error
     }
   }, [email, name, password]);
 
   const login = useCallback(async () => {
+    setLoading(true); // Start loading
     try {
-      await signIn("credentials", {
+      const result = await signIn("credentials", {
         email,
         password,
         redirect: false,
-        callbackUrl: "",
       });
 
-      router.push("/apikey");
+      if (result?.error) {
+        toast.error("Wrong password or email."); // Show error if login fails
+        setLoading(false); // Stop loading
+      } else {
+        toast.success("Login successful!"); // Show success toast
+        setTimeout(() => {
+          router.push("/apikey");
+        }, 10000);
+      }
     } catch (e) {
       console.log(e);
+      toast.error("An error occurred during login."); // Generic error toast
+      setLoading(false); // Stop loading
     }
   }, [email, password, router]);
 
   const { data: session } = useSession();
-    if (session) {
-      router.push("/");
-    }
+  if (session) {
+    router.push("/");
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -112,24 +125,31 @@ const Auth = () => {
           </LabelInputContainer>
 
           <button
-            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            className={`bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             type="submit"
+            disabled={loading} // Disable button when loading
           >
-            {variant === "login" ? "Login" : "Sign up"} &rarr;
+            {loading ? (
+              <span className="loader"></span> // Loader component
+            ) : (
+              variant === "login" ? "Login" : "Sign up"
+            )}
+            &rarr;
             <BottomGradient />
           </button>
         </form>
 
         <button
-  className="text-neutral-500 flex justify-center items-center w-full"
-  onClick={toggleVariant}
->
-  {variant === "login"
-    ? "New user? Sign up here."
-    : "Already have an account? Login here."}
-</button>
-
+          className="text-neutral-500 flex justify-center items-center w-full"
+          onClick={toggleVariant}
+        >
+          {variant === "login"
+            ? "New user? Sign up here."
+            : "Already have an account? Login here."}
+        </button>
       </div>
+
+      <ToastContainer /> {/* Add ToastContainer to display notifications */}
     </div>
   );
 };
