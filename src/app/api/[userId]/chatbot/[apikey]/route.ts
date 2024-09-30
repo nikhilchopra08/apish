@@ -9,7 +9,7 @@ const setCorsHeaders = (response: NextResponse) => {
   response.headers.set('Access-Control-Allow-Credentials', 'true'); // Allow credentials if needed
 };
 
-
+// 
 export async function OPTIONS() {
   const response = NextResponse.json({ message: 'CORS preflight success' });
   setCorsHeaders(response);
@@ -19,9 +19,9 @@ export async function OPTIONS() {
 
 export async function POST(req: NextRequest) {
 
-  // if (req.method === 'OPTIONS') {
-  //   return OPTIONS(req);
-  // }
+  if (req.method === 'OPTIONS') {
+    return OPTIONS();
+  }
 
   const response = NextResponse.json({ message: 'Success' });
   setCorsHeaders(response); // Set CORS headers for the POST response
