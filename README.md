@@ -72,7 +72,7 @@ Once the server is running, you can access the API at `http://localhost:3000`. F
 
 ## Contributing
 
-We welcome contributions! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to contribute.
+We welcome contributions! Please see the [CONTRIBUTING.md](contributing.md) file for details on how to contribute.
 
 ## License
 
