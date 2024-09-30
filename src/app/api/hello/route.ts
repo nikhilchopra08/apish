@@ -1,9 +1,8 @@
 // app/api/hello/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import { corsMiddleware } from '@/lib/cors';
-import serverAuth from '@/lib/serverauth';
+import { NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest) {
+
+export async function GET() {
     // Apply CORS headers
     const res = NextResponse.json({ message: 'Hello, World!' });
     res.headers.set('Access-Control-Allow-Origin', '*'); // Allow CORS
