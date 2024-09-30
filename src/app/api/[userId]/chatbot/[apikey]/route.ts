@@ -2,7 +2,30 @@ import { NextRequest, NextResponse } from 'next/server';
 import prismadb from '@/lib/prismadb'; // Import your Prisma client instance
 // import serverAuth from '@/lib/serverauth';
 
+const setCorsHeaders = (response: NextResponse) => {
+  response.headers.set('Access-Control-Allow-Origin', '*'); // Allow CORS for all origins (consider restricting this in production)
+  response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS'); // Allowed methods
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allowed headers
+  response.headers.set('Access-Control-Allow-Credentials', 'true'); // Allow credentials if needed
+};
+
+export async function OPTIONS(req: NextRequest) {
+  const response = NextResponse.json({ message: 'CORS preflight success' });
+  setCorsHeaders(response);
+  return response;
+}
+
+
 export async function POST(req: NextRequest) {
+
+  if (req.method === 'OPTIONS') {
+    return OPTIONS(req);
+  }
+
+  const response = NextResponse.json({ message: 'Success' });
+  setCorsHeaders(response); // Set CORS headers for the POST response
+
+
   try {
     // Extract API key and userId from the URL parameters
     const url = new URL(req.url);
@@ -83,7 +106,10 @@ export async function POST(req: NextRequest) {
     }
 
     const result = await response.json();
-    return NextResponse.json(result, { status: 200 });
+    const finalResponse = NextResponse.json(result, { status: 200 });
+
+    setCorsHeaders(finalResponse); // Set CORS headers for the final response
+    return finalResponse;
 
   } catch (error) {
     return NextResponse.json({ message: (error as Error).message }, { status: 500 });
