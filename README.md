@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# APIsh
 
-## Getting Started
+APIsh is a decentralized API marketplace that allows developers to publish APIs and users to access them via blockchain-based micropayments. This project aims to streamline the process of API integration and usage while ensuring secure and efficient transactions.
 
-First, run the development server:
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+- Publish APIs for developers.
+- Access APIs with blockchain-based micropayments.
+- Secure and transparent transactions using smart contracts.
+- User-friendly interface for easy integration.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies
+- **Frontend**: Next.js, Tailwind CSS
+- **Backend**: Node.js, Express
+- **Database**: Prisma with a relational database
+- **Blockchain**: Ethereum
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To get started with APIsh, follow these steps:
 
-## Learn More
+1. **Clone the repository**:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/yourusername/apish.git
+   cd apish
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install the dependencies**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+3. **Set up the environment variables**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   Create a `.env` file in the root directory and add your environment variables. You can use the following template:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```plaintext
+   DATABASE_URL="your_database_url"
+   OTHER_ENV_VARIABLES="your_other_variables"
+   ```
+
+4. **Run the Prisma migrations**:
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+5. **Generate Prisma client**:
+
+   ```bash
+   npx prisma generate
+   ```
+
+6. **Start the development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+## Usage
+
+Once the server is running, you can access the API at `http://localhost:3000`. Follow the documentation for API endpoints and usage instructions.
+
+## Contributing
+
+We welcome contributions! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to contribute.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
