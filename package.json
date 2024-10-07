@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
-    "@prisma/client": "^5.19.1",
+    "@prisma/client": "^5.20.0",
     "@radix-ui/react-label": "^2.1.0",
     "@tabler/icons-react": "^3.16.0",
     "@types/bcrypt": "^5.0.2",
