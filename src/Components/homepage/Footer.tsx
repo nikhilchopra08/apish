@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { FaTwitter, FaFacebook, FaLinkedin } from "react-icons/fa";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 border-t border-gray-800 text-white py-8">
       <div className="container mx-auto px-4 md:px-8">
@@ -17,17 +17,25 @@ const Footer = () => {
 
           {/* Navigation links */}
           <nav className="flex justify-center md:justify-end space-x-6">
-            <Link href="/about">
-              <a className="text-gray-400 hover:text-white transition duration-300">About Us</a>
+            <Link href="/about" passHref>
+              <span className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
+                About Us
+              </span>
             </Link>
-            <Link href="/pricing">
-              <a className="text-gray-400 hover:text-white transition duration-300">Pricing</a>
+            <Link href="/pricing" passHref>
+              <span className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
+                Pricing
+              </span>
             </Link>
-            <Link href="/faq">
-              <a className="text-gray-400 hover:text-white transition duration-300">FAQs</a>
+            <Link href="/faq" passHref>
+              <span className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
+                FAQs
+              </span>
             </Link>
-            <Link href="/contact">
-              <a className="text-gray-400 hover:text-white transition duration-300">Contact</a>
+            <Link href="/contact" passHref>
+              <span className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
+                Contact
+              </span>
             </Link>
           </nav>
         </div>
